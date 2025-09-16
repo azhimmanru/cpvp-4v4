@@ -3,96 +3,152 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Turnamen 16 Tim</title>
+  <title>Turnamen 16 Tim - Interaktif</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
       display: flex;
       justify-content: center;
       padding: 20px;
     }
+    .container {
+      max-width: 1200px;
+      width: 100%;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      letter-spacing: 1px;
+    }
     .bracket {
       display: flex;
       gap: 40px;
+      overflow-x: auto;
+      padding: 20px;
     }
     .round {
       display: flex;
       flex-direction: column;
       justify-content: space-around;
+      flex: 1;
     }
     .match {
-      background: white;
-      border: 1px solid #ccc;
-      padding: 8px 12px;
-      margin: 10px 0;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 10px 14px;
+      margin: 12px 0;
       text-align: center;
-      border-radius: 6px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
+    .match:hover {
+      background: rgba(255,255,255,0.3);
+      transform: scale(1.05);
+    }
+    .winner {
+      background: #4caf50 !important;
+      color: #fff !important;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <div>
-    <h2>Bracket Turnamen 16 Tim</h2>
-    <div class="bracket">
+  <div class="container">
+    <h2>🏆 Bracket Turnamen 16 Tim</h2>
+    <div class="bracket" id="bracket">
       
       <!-- Round 1 (16 Tim) -->
-      <div class="round">
-        <div class="match">Tim 1</div>
-        <div class="match">Tim 2</div>
-        <div class="match">Tim 3</div>
-        <div class="match">Tim 4</div>
-        <div class="match">Tim 5</div>
-        <div class="match">Tim 6</div>
-        <div class="match">Tim 7</div>
-        <div class="match">Tim 8</div>
-        <div class="match">Tim 9</div>
-        <div class="match">Tim 10</div>
-        <div class="match">Tim 11</div>
-        <div class="match">Tim 12</div>
-        <div class="match">Tim 13</div>
-        <div class="match">Tim 14</div>
-        <div class="match">Tim 15</div>
-        <div class="match">Tim 16</div>
+      <div class="round" id="round1">
+        <div class="match" onclick="pickWinner(this, 'round2-1')">Tim 1</div>
+        <div class="match" onclick="pickWinner(this, 'round2-1')">Tim 2</div>
+        <div class="match" onclick="pickWinner(this, 'round2-2')">Tim 3</div>
+        <div class="match" onclick="pickWinner(this, 'round2-2')">Tim 4</div>
+        <div class="match" onclick="pickWinner(this, 'round2-3')">Tim 5</div>
+        <div class="match" onclick="pickWinner(this, 'round2-3')">Tim 6</div>
+        <div class="match" onclick="pickWinner(this, 'round2-4')">Tim 7</div>
+        <div class="match" onclick="pickWinner(this, 'round2-4')">Tim 8</div>
+        <div class="match" onclick="pickWinner(this, 'round2-5')">Tim 9</div>
+        <div class="match" onclick="pickWinner(this, 'round2-5')">Tim 10</div>
+        <div class="match" onclick="pickWinner(this, 'round2-6')">Tim 11</div>
+        <div class="match" onclick="pickWinner(this, 'round2-6')">Tim 12</div>
+        <div class="match" onclick="pickWinner(this, 'round2-7')">Tim 13</div>
+        <div class="match" onclick="pickWinner(this, 'round2-7')">Tim 14</div>
+        <div class="match" onclick="pickWinner(this, 'round2-8')">Tim 15</div>
+        <div class="match" onclick="pickWinner(this, 'round2-8')">Tim 16</div>
       </div>
       
       <!-- Quarterfinals (8 Tim) -->
-      <div class="round">
-        <div class="match">Pemenang 1</div>
-        <div class="match">Pemenang 2</div>
-        <div class="match">Pemenang 3</div>
-        <div class="match">Pemenang 4</div>
-        <div class="match">Pemenang 5</div>
-        <div class="match">Pemenang 6</div>
-        <div class="match">Pemenang 7</div>
-        <div class="match">Pemenang 8</div>
+      <div class="round" id="round2">
+        <div class="match" id="round2-1"></div>
+        <div class="match" id="round2-2"></div>
+        <div class="match" id="round2-3"></div>
+        <div class="match" id="round2-4"></div>
+        <div class="match" id="round2-5"></div>
+        <div class="match" id="round2-6"></div>
+        <div class="match" id="round2-7"></div>
+        <div class="match" id="round2-8"></div>
       </div>
       
       <!-- Semifinals (4 Tim) -->
-      <div class="round">
-        <div class="match">Semifinal 1</div>
-        <div class="match">Semifinal 2</div>
-        <div class="match">Semifinal 3</div>
-        <div class="match">Semifinal 4</div>
+      <div class="round" id="round3">
+        <div class="match" id="round3-1"></div>
+        <div class="match" id="round3-2"></div>
+        <div class="match" id="round3-3"></div>
+        <div class="match" id="round3-4"></div>
       </div>
       
       <!-- Final (2 Tim) -->
-      <div class="round">
-        <div class="match">Finalis 1</div>
-        <div class="match">Finalis 2</div>
+      <div class="round" id="round4">
+        <div class="match" id="round4-1"></div>
+        <div class="match" id="round4-2"></div>
       </div>
       
       <!-- Champion -->
-      <div class="round">
-        <div class="match"><b>JUARA</b></div>
+      <div class="round" id="round5">
+        <div class="match" id="champion"><b>JUARA</b></div>
       </div>
       
     </div>
   </div>
+
+  <script>
+    function pickWinner(element, nextId) {
+      let winnerName = element.innerText;
+      let target = document.getElementById(nextId);
+      if (target) {
+        target.innerText = winnerName;
+        target.onclick = function() {
+          let nextRound = getNextRound(nextId);
+          if (nextRound) pickWinner(target, nextRound);
+        };
+      }
+      element.classList.add("winner");
+    }
+
+    function getNextRound(currentId) {
+      // Mapping next match
+      const mapping = {
+        "round2-1": "round3-1",
+        "round2-2": "round3-1",
+        "round2-3": "round3-2",
+        "round2-4": "round3-2",
+        "round2-5": "round3-3",
+        "round2-6": "round3-3",
+        "round2-7": "round3-4",
+        "round2-8": "round3-4",
+        "round3-1": "round4-1",
+        "round3-2": "round4-1",
+        "round3-3": "round4-2",
+        "round3-4": "round4-2",
+        "round4-1": "champion",
+        "round4-2": "champion"
+      };
+      return mapping[currentId] || null;
+    }
+  </script>
 </body>
 </html>
